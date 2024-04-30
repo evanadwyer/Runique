@@ -56,6 +56,8 @@ dependencies {
     implementation(libs.coil.compose)
 
     // Compose
+    val composeBom = platform(libs.androidx.compose.bom)
+    implementation(composeBom)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.compose.ui)
@@ -76,6 +78,7 @@ dependencies {
     api(libs.core)
 
     testImplementation(libs.junit)
+    androidTestImplementation(composeBom)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)

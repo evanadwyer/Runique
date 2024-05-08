@@ -39,7 +39,6 @@ import com.evanadwyer.core.presentation.designsystem.CrossIcon
 import com.evanadwyer.core.presentation.designsystem.EmailIcon
 import com.evanadwyer.core.presentation.designsystem.Poppins
 import com.evanadwyer.core.presentation.designsystem.RuniqueDarkRed
-import com.evanadwyer.core.presentation.designsystem.RuniqueGray
 import com.evanadwyer.core.presentation.designsystem.RuniqueGreen
 import com.evanadwyer.core.presentation.designsystem.RuniqueTheme
 import com.evanadwyer.core.presentation.designsystem.components.GradientBackground
@@ -81,7 +80,12 @@ fun RegisterScreenRoot(
 
     RegisterScreen(
         state = viewModel.state,
-        onAction = viewModel::onAction
+        onAction = { action ->
+            when (action) {
+                is RegisterAction.OnLoginClick -> onSignInClick()
+                else -> viewModel.onAction(action)
+            }
+        }
     )
 }
 
@@ -107,7 +111,7 @@ fun RegisterScreen(
                 withStyle(
                     style = SpanStyle(
                         fontFamily = Poppins,
-                        color = RuniqueGray
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 ) {
                     append(stringResource(id = R.string.already_have_an_account) + " ")

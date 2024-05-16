@@ -6,6 +6,7 @@ import com.evanadwyer.auth.presentation.di.authViewModelModule
 import com.evanadwyer.core.data.di.coreDataModule
 import com.evanadwyer.core.database.di.databaseModule
 import com.evanadwyer.run.location.di.locationModule
+import com.evanadwyer.run.network.di.networkModule
 import com.evanadwyer.run.presentation.di.runPresentationModule
 import com.evanadwyer.runique.di.appModule
 import kotlinx.coroutines.CoroutineScope
@@ -35,7 +36,8 @@ class RuniqueApp: Application() {
                 coreDataModule,
                 runPresentationModule,
                 locationModule,
-                databaseModule
+                databaseModule,
+                networkModule
             )
         }
     }

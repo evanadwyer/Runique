@@ -3,6 +3,7 @@ package com.evanadwyer.core.database.di
 import androidx.room.Room
 import com.evanadwyer.core.database.RoomLocalRunDataSource
 import com.evanadwyer.core.database.RunDatabase
+import com.evanadwyer.core.database.dao.RunPendingSyncDao
 import com.evanadwyer.core.domain.run.LocalRunDataSource
 import org.koin.android.ext.koin.androidApplication
 import org.koin.core.module.dsl.singleOf
@@ -18,6 +19,7 @@ val databaseModule = module {
         ).build()
     }
     single { get<RunDatabase>().runDao }
+    single { get<RunDatabase>().runPendingSyncDao }
 
     singleOf(::RoomLocalRunDataSource).bind<LocalRunDataSource>()
 }

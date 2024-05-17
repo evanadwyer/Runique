@@ -1,6 +1,7 @@
 package com.evanadwyer.runique
 
 import android.app.Application
+import android.content.Context
 import com.evanadwyer.auth.data.di.authDataModule
 import com.evanadwyer.auth.presentation.di.authViewModelModule
 import com.evanadwyer.core.data.di.coreDataModule
@@ -10,6 +11,7 @@ import com.evanadwyer.run.location.di.locationModule
 import com.evanadwyer.run.network.di.networkModule
 import com.evanadwyer.run.presentation.di.runPresentationModule
 import com.evanadwyer.runique.di.appModule
+import com.google.android.play.core.splitcompat.SplitCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import org.koin.android.ext.koin.androidContext
@@ -44,5 +46,10 @@ class RuniqueApp: Application() {
                 runDataModule
             )
         }
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        SplitCompat.install(this)
     }
 }

@@ -4,18 +4,22 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.channels.Channel
+import androidx.lifecycle.viewModelScope
+import com.evanadwyer.analytics.domain.AnalyticsRepository
+import kotlinx.coroutines.launch
 
 class AnalyticsDashboardViewModel(
-
+    private val analyticsRepository: AnalyticsRepository
 ) : ViewModel() {
 
     var state by mutableStateOf<AnalyticsDashboardState?>(null)
         private set
 
-//    private val eventChannel = Channel<AnalyticsDashboardEvent>()
-//    val events = eventChannel.receiveAsFlow()
-
+    init {
+        viewModelScope.launch {
+            state = analyticsRepository.getAnalyticsValues().toAnalyticsDashboardState()
+        }
+    }
 
     fun onAction(action: AnalyticsAction) {
         when (action) {

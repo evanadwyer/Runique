@@ -47,6 +47,9 @@ import com.evanadwyer.core.presentation.ui.ObserveAsEvents
 import com.evanadwyer.core.presentation.ui.formatted
 import com.evanadwyer.core.presentation.ui.toFormattedHeartRate
 import com.evanadwyer.core.presentation.ui.toFormattedKm
+import com.evanadwyer.wear.run.presentation.ambient.AmbientObserver
+import com.evanadwyer.wear.run.presentation.ambient.ambientGray
+import com.evanadwyer.wear.run.presentation.ambient.ambientMode
 import com.evanadwyer.wear.run.presentation.components.RunDataCard
 import org.koin.androidx.compose.koinViewModel
 
@@ -121,11 +124,22 @@ private fun TrackerScreen(
 
         permissionLauncher.launch(permissions.toTypedArray())
     }
+
+    AmbientObserver(
+        onEnterAmbient = {
+            onAction(TrackerAction.OnEnterAmbientMode(it.burnInProtectionRequired))
+        },
+        onExitAmbient = {
+            onAction(TrackerAction.OnExitAmbientMode)
+        }
+    )
+
     if (state.isConnectedPhoneNearby) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background),
+                .background(MaterialTheme.colorScheme.background)
+                .ambientMode(state.isAmbientMode, state.burnInProtectionRequired),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {

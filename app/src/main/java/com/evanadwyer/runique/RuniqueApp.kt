@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.evanadwyer.auth.data.di.authDataModule
 import com.evanadwyer.auth.presentation.di.authViewModelModule
+import com.evanadwyer.core.connectivity.data.di.coreConnectivityDataModule
 import com.evanadwyer.core.data.di.coreDataModule
 import com.evanadwyer.core.database.di.databaseModule
 import com.evanadwyer.run.data.di.runDataModule
@@ -43,7 +44,8 @@ class RuniqueApp: Application() {
                 locationModule,
                 databaseModule,
                 networkModule,
-                runDataModule
+                runDataModule,
+                coreConnectivityDataModule
             )
         }
     }

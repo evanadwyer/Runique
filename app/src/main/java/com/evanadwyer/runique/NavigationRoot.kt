@@ -11,8 +11,8 @@ import androidx.navigation.navDeepLink
 import com.evanadwyer.auth.presentation.intro.IntroScreenRoot
 import com.evanadwyer.auth.presentation.login.LoginScreenRoot
 import com.evanadwyer.auth.presentation.register.RegisterScreenRoot
+import com.evanadwyer.core.notification.ActiveRunService
 import com.evanadwyer.run.presentation.active_run.ActiveRunScreenRoot
-import com.evanadwyer.run.presentation.active_run.service.ActiveRunService
 import com.evanadwyer.run.presentation.run_overview.RunOverviewScreenRoot
 
 @Composable

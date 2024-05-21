@@ -10,6 +10,7 @@ android {
 dependencies {
     implementation(projects.core.domain)
     implementation(projects.core.connectivity.domain)
+    implementation(projects.core.notification)
     implementation(projects.run.domain)
 
     implementation(libs.coil.compose)

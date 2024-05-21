@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.evanadwyer.core.presentation.designsystem.RuniqueTheme
 import com.evanadwyer.core.presentation.ui.formatted
+import com.evanadwyer.core.presentation.ui.toFormattedHeartRate
 import com.evanadwyer.core.presentation.ui.toFormattedKm
 import com.evanadwyer.core.presentation.ui.toFormattedPace
 import com.evanadwyer.run.domain.RunData
@@ -58,6 +59,12 @@ fun RunDataCard(
             RunDataItem(
                 title = stringResource(id = R.string.distance),
                 value = (runData.distanceMeters / 1000.0).toFormattedKm(),
+                modifier = Modifier
+                    .defaultMinSize(minWidth = 75.dp)
+            )
+            RunDataItem(
+                title = stringResource(id = R.string.heart_rate),
+                value = runData.heartRates.lastOrNull().toFormattedHeartRate(),
                 modifier = Modifier
                     .defaultMinSize(minWidth = 75.dp)
             )
@@ -103,7 +110,11 @@ private fun RunDataCardPreview() {
     RuniqueTheme {
         RunDataCard(
             elapsedTime = 10.minutes,
-            runData = RunData(distanceMeters = 3400, pace = 3.minutes)
+            runData = RunData(
+                distanceMeters = 3400,
+                pace = 3.minutes,
+                heartRates = listOf(150)
+            )
         )
     }
 }

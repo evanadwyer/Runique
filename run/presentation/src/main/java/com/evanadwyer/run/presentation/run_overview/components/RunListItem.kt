@@ -251,6 +251,14 @@ private fun DataGrid(
             name = stringResource(id = R.string.total_elevation),
             value = runUi.totalElevation
         ),
+        RunDataUi(
+            name = stringResource(id = R.string.avg_heart_rate),
+            value = runUi.avgHeartRate
+        ),
+        RunDataUi(
+            name = stringResource(id = R.string.max_heart_rate),
+            value = runUi.maxHeartRate
+        ),
     )
 
     var maxWidth by remember {
@@ -313,7 +321,9 @@ private fun RunListItemPreview() {
                 location = Location(0.0, 0.0),
                 maxSpeedKmh = 15.6234,
                 totalElevationMeters = 123,
-                mapPictureUrl = null
+                mapPictureUrl = null,
+                averageHeartRate = 120,
+                maxHeartRate = 150
             ).toRunUi(),
             onDeleteClick = {  }
         )
